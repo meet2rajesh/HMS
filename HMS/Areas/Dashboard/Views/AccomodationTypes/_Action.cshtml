@@ -1,0 +1,76 @@
+﻿@model HMS.Areas.Dashboard.ViewModels.AccomodationTypesActionModel
+
+
+@if (Model != null)
+{
+<div class="modal-content">
+    <div class="modal-header">
+
+        <h5 class="modal-title">
+            @if (Model.ID > 0)
+            {
+                <span>Edit Accomodation Type</span>
+            }
+            else
+            {
+                <span>Create Accomodation Type</span>
+            }
+        </h5>
+
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modal-body">
+
+        <form id="actionForm">
+            @*<div class="mb-2">
+                    <input type="hidden" name="ID" />
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control" id="Name" name="name" placeholder="Enter Accomodation Type Name" />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Description</label>
+                    <textarea id="Description" class="form-control" rows="3" name="Description" placeholder="Enter Accomodation Type Description"></textarea>
+                </div>*@
+            <div class="mb-2">
+                <input type="hidden" name="ID" value="@Model.ID" />
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" name="Name" placeholder="Enter Accomodation Type Name" value="@Model.Name" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Description</label>
+                <input type="text" class="form-control" name="Description" placeholder="Enter Accomodation Type Description" value="@Model.Description" />
+            </div>
+        </form>
+        <div class="errorDiv">
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="actionButton" type="button" class="btn btn-primary"><i class="fas fa-save mr-1"></i> Save</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-times mr-1"></i> Close</button>
+    </div>
+</div>
+
+}
+
+<script>
+	$("#actionButton").click(function () {
+		$.ajax({
+			url: '@Url.Action("Action", "AccomodationTypes")',
+			type: "post",
+			data: $("#actionForm").serialize()
+		})
+		.done(function (response) {
+			if(response.Success)
+			{
+                window.location.href = "@Url.Action("Index", "AccomodationTypes")";
+                //location.reload();
+			}
+			else {
+				$(".errorDiv").html(response.Message);
+			}
+		});
+	});
+</script>
+

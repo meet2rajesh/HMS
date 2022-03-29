@@ -1,0 +1,49 @@
+﻿@model HMS.Areas.Dashboard.ViewModels.AccomodationPackageActionModel
+
+@if (Model != null)
+{
+<div class="modal-content">
+    <div class="modal-header">
+        <span>Delete Accomodation Package</span>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modal-body">
+
+        <form id="actionForm">
+            <input type="hidden" name="ID" value="@Model.ID" />
+        </form>
+
+        <div class="mb-2">
+            <div class="alert alert-danger" role="alert">
+                Are you sure you want to Delete this type!
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button id="actionButton" type="button" class="data-btn btn btn-primary">Delete</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+    </div>
+</div>}
+
+<script>
+	$("#actionButton").click(function () {
+		$.ajax({
+			url: '@Url.Action("Delete", "AccomodationPackages")',
+			type: "post",
+			data: $("#actionForm").serialize()
+		})
+		.done(function (response) {
+			if(response.Success)
+			{
+				window.location.href = "@Url.Action("Index", "AccomodationPackages")";
+			}
+			else {
+				$(".errorDiv").html(response.Message);
+			}
+		});
+	});
+</script>
