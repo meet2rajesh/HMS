@@ -17,7 +17,7 @@ namespace HMS.Areas.Dashboard.Controllers
         // DashboardService dashboardService = new DashboardService();
         public ActionResult Index(string searchTerm, int? accomodationTypeID, int? page)
         {
-            int recordSize = 3;
+            int recordSize = 5;
             page = page ?? 1;
            
             AccomodationPackagesListingModel model = new AccomodationPackagesListingModel();

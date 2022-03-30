@@ -17,7 +17,7 @@
         <form>
             <div class="input-group">
                 <input type="text" name="searchterm" class="form-control" placeholder="Search." value="@Model.SearchTerm" required>
-               <button class="btn btn-outline-primary" type="submit"><i class='fas fa-search m-1'></i>Search</button>
+                <button class="btn btn-outline-primary" type="submit"><i class='fas fa-search m-1'></i>Search</button>
                 @*<button class="btn btn-outline-secondary" type="button">Reset</button>*@
                 <a class="btn btn-outline-secondary" href="@Url.Action("Index", "AccomodationTypes")"><i class="fas fa-redo-alt m-1"></i> Reset</a>
                 <button data-href="@Url.Action("Action", "AccomodationTypes")" class="data-btn btn btn-outline-success" type="button"
@@ -32,20 +32,15 @@
 
 <div class="row">
     <div class="col col-lg-12">
-        @{Html.RenderPartial("_Listing", Model);}
-
-
+        @{ Html.RenderPartial("_Listing", Model); }
     </div>
 </div>
-
-<!-- Modal -->
 
 <div class="modal fade" id="actionModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-        @{Html.RenderAction("Action"); }
-
     </div>
 </div>
+
 
 <!--Create button script-->
 
